@@ -1,0 +1,62 @@
+# This file allows more control over configuration than config.py if needed,
+# or for use in development where setting environment variables is tedious.
+#
+# If you prefer not to use environment variables as config or you need to
+# use settings beyond what config.py allows, you can mount this file into the
+# container and it will allow you to override settings in config.py as needed.
+
+
+from __future__ import absolute_import, unicode_literals
+import os
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+
+
+ALLOWED_HOSTS = ["*"]
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = "This is a terrible secret key. Don't use me in production."
+
+
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': [
+                'console',
+            ],
+            'level': 'INFO',
+            'propagate': False,
+        }
+    }
+}
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+TIME_ZONE = 'NZ'
+
+DATE_FORMAT = 'j F, Y'
+DATETIME_FORMAT = 'j F, Y, P'

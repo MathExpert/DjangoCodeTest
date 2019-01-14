@@ -1,0 +1,19 @@
+{% extends "questionnaire/base.html" %}
+
+{% block body_content %}
+<div class="container main-body">
+
+  <div class="index-main">
+    <h1 class="index-heading">Simple Questionnaire</h1>
+    <p>
+      This is a simple questionnaire, with a rather inane question,
+      but hey, we gotta test something right?
+    </p>
+    <h3 class="index-count">There have been {{ num_answers }} filled questionnaires.</h3>
+    <p>
+      <a href="/questionnaire" class="btn btn-primary">Fill questionnaire</a>
+      <a href="/results" class="btn btn-primary">See results</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

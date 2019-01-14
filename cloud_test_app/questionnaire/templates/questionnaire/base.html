@@ -1,0 +1,24 @@
+{% load bootstrap4 %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ title }}</title>
+
+        {% bootstrap_css %}
+        <link rel="stylesheet" type="text/css" href="{% static "questionnaire/style.css" %}" />
+        {% block extra_css %}
+        {% endblock %}
+
+    </head>
+
+    <body>
+      {% block body_content %}
+      {% endblock %}
+    </body>
+</html>

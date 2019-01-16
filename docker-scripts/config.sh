@@ -1,0 +1,3 @@
+EXPOSE_PORT=8000
+CONTAINER_NAME=test_site
+IMAGE_NAME=local/cloud_test

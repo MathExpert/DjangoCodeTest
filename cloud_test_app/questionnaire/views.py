@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 from . models import Favourite
 
@@ -16,3 +17,6 @@ def questionnaire(request):
 
 def results(request):
     return HttpResponse('Results view placeholder. More incoming!')
+
+def answered(request):
+    return HttpResponseRedirect(reverse('questionnaire:index'))

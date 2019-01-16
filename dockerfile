@@ -13,7 +13,8 @@ RUN apk add --no-cache \
       postgresql-dev \
       mariadb-dev;
 
-# TODO: install django app requirements and gunicorn using pip
+RUN pip install gunicorn
+RUN pip install -r /opt/cloud_test_app/requirements.txt
 
 EXPOSE 8000
 WORKDIR /opt

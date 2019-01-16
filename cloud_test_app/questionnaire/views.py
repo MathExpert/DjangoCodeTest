@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from . models import Favourite
 
 def index(request):
-    # TODO: make this a real number:
-    num_answers = 0
+    num_answers = Favourite.objects.count()
     context = {
         'title': "Basic Questions!",
         'num_answers': num_answers,

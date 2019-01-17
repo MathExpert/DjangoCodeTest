@@ -5,12 +5,9 @@ from django.contrib import messages
 from django.db.models import Count
 
 from . models import Favourite
+from questionnaire.utils import month_names, weekday_names
 
-import calendar
 from collections import OrderedDict
-
-month_names = [calendar.month_name[i] for i in range(1, 13)]
-weekday_names = [calendar.day_name[i] for i in range(7)]
 
 def index(request):
     num_answers = Favourite.objects.count()

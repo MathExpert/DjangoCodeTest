@@ -1,0 +1,42 @@
+2. "Explain why the startup_check.py file exists and what it does"
+
+As far as I understand, contrary to what is happening in this task, usually in production:
+
+- static files are served from a single location (possibly on some server which is a different machine)
+even though there can be multiple containers with the web app running. When static files change, they need to
+be collected in that single location. The script either does that, or waits until someone else finishes doing that.
+
+- similar for the database, there is one main database instance running somewhere, to which everyone connects
+(again, contrary to the task here with just a local sqlite3 database in a file). The script checks if there
+are any unapplied migrations and applies them, or waits until another process finished doing that and repeats that again.
+
+So in general, the script resolves race conditions that might occur with multiple clients try to run migrations or
+collect static files. I can't say though that I am aware of what kind of workflow leads to that - for example, why would there be
+multiple identical clients/containers? My guess is that it has something to do with load balancing and maybe with fail safety.
+
+Also not very sure about the bit about the default superuser.
+
+1. "Explain how the config for this app works, and why when using docker compose might this be a good way to configure rather than a config file"
+
+It seems that Django config is made this way to make local configuration overrides possible (local.py takes priority over config.py).
+So, when we are using Docker Compose (i.e. multiple containers), each can have some tweaks to the base configuration.
+Again, I am not sure what kind of workflow leads to that.
+
+3. "Explain what the entrypoint.sh file does"
+
+entrypoint.sh is set to be the entry point for the Docker container, i.e. the command
+that runs when the container is run.
+
+It iterates over the passed command line arguments.
+
+If it encounters "--django-manage" it executes the Django project management script with the passed argument,
+which can be used to run "makemigrations" for example.
+
+"--manage-shell" seems to be intended for the case when we need to run some arbitrary command in the Django enironment.
+
+"--start-service" will start gunicorn;
+"--hot-reload" also passed "--reload" to gunicorn and seems to be intended for development
+and used together with mounting the local project directory over the project directory within container, which
+will enable the workflow where files can be changed locally, but changes to them be dynamically updated by gunicorn.
+
+Before starting gunicorn, the script runs "startup_check.py" and exits right away on non-zero exit code.

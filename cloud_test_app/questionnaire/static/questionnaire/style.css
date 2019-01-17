@@ -2,3 +2,16 @@
 .main-body {
   margin-top: 50px;
 }
+
+.django-messages {
+  margin-top: 1em;
+  padding-left: 0em;
+}
+
+.django-messages .error {
+  background: #BA110C;
+  border-radius: 5px;
+  color: white;
+  list-style: none;
+  padding: 0.5em;
+}

@@ -6,11 +6,19 @@
   <div>
     <h1>Simple Questionnaire</h1>
 
+    {% if messages %}
+      <ul class="django-messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+
     <form action="{% url 'questionnaire:answered' %}" method="post">
       {% csrf_token %}
       <div class="form-group">
         <label for="month-select">My favourite month:</label>
-        <select class="form-control" id="month-select" name="month">
+        <select class="form-control" id="month-select" name="month" required>
           {% for month_name in month_names %}
             <option value="{{ forloop.counter }}">{{ month_name }}</option>
           {% endfor %}
@@ -20,7 +28,7 @@
 
       <div class="form-group">
         <label for="weekday-select">My favourite day of the week:</label>
-        <select class="form-control" id="weekday-select" name="weekday">
+        <select class="form-control" id="weekday-select" name="weekday" required>
           {% for weekday_name in weekday_names %}
             <option value="{{ forloop.counter }}">{{ weekday_name }}</option>
           {% endfor %}

@@ -9,6 +9,7 @@ from questionnaire.utils import month_names, weekday_names
 
 from collections import OrderedDict
 
+
 def index(request):
     num_answers = Favourite.objects.count()
     context = {
@@ -17,12 +18,14 @@ def index(request):
     }
     return render(request, 'questionnaire/index.html', context)
 
+
 def questionnaire(request):
     context = {
         'month_names': month_names,
         'weekday_names': weekday_names,
     }
     return render(request, 'questionnaire/questionnaire.html', context)
+
 
 def results(request):
     # Database contents in a real situation might be big, so
@@ -69,6 +72,7 @@ def results(request):
     }
 
     return render(request, 'questionnaire/results.html', context)
+
 
 def answered(request):
     def on_bad_data(request):

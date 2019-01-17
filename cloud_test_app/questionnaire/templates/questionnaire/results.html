@@ -2,34 +2,34 @@
 
 {% block body_content %}
 <div class="container main-body">
-    <h1>Simple Questionnaire</h1>
-    <p>
-        These are the results for the inane questionnaire.
-    </p>
+  <h1>Simple Questionnaire</h1>
+  <p>
+    These are the results for the inane questionnaire.
+  </p>
 
-    <a href="{% url 'questionnaire:index' %}" class="btn btn-primary">Back to index</a>
+  <a href="{% url 'questionnaire:index' %}" class="btn btn-primary">Back to index</a>
 
-    <h2>Results</h2>
+  <h2>Results</h2>
 
-    <h3>Months</h3>
-    <ul>
-        {% for item in fav_month_data %}
-        <li>{{ item.0 }}: {{ item.1 }} ({{ item.2 }}%)</li>
-        {% endfor %}
-    </ul>
+  <h3>Months</h3>
+  <ul>
+    {% for item in fav_month_data %}
+    <li>{{ item.0 }}: {{ item.1 }} ({{ item.2 }}%)</li>
+    {% endfor %}
+  </ul>
 
-    <h3>Days</h3>
-    <ul>
-        {% for item in fav_weekday_data %}
-        <li>{{ item.0 }}: {{ item.1 }} ({{ item.2 }}%)</li>
-        {% endfor %}
-    </ul>
+  <h3>Days</h3>
+  <ul>
+    {% for item in fav_weekday_data %}
+    <li>{{ item.0 }}: {{ item.1 }} ({{ item.2 }}%)</li>
+    {% endfor %}
+  </ul>
 
-    <h3>Favourite day relative to month</h3>
-    <ul>
-        {% for item in fav_relative_data %}
-        <li>{{ item.0 }}: {{ item.1 }}</li>
-        {% endfor %}
-    </ul>
+  <h3>Favourite day relative to month</h3>
+  <ul>
+    {% for item in fav_relative_data %}
+    <li>{{ item.0 }}: {{ item.1 }}</li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}

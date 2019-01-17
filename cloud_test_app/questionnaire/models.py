@@ -10,7 +10,9 @@ class Favourite(models.Model):
     def __str__(self):
         repr_format = 'Month: {}, Weekday: {}'
         try:
-            return repr_format.format(months[self.fav_month], weekdays[self.fav_weekday])
+            if self.fav_month < 1 or self.fav_weekday < 1:
+                raise IndexError()
+            return repr_format.format(months[self.fav_month - 1], weekdays[self.fav_weekday - 1])
         except IndexError:
             # We shouldn't get here if questionnaire answer data is handled correctly
             return repr_format.format('??', '??')

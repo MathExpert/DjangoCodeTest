@@ -46,7 +46,8 @@ def results(request):
         count_entries = get_entries_with_count(values, field_name)
         fav_counts = get_dict_with_count(count_entries, field_name)
         total = values.count()
-        return [(names[k - 1], v, '{0:.2f}'.format(100 * v / total)) for k, v in fav_counts.items()]
+        return [(names[k - 1], v, '{0:.2f}'.format(100 * v / total))
+                for k, v in fav_counts.items()]
 
     fav_month_data = prepare_fav_data('fav_month', month_names)
     fav_weekday_data = prepare_fav_data('fav_weekday', weekday_names)
@@ -76,7 +77,7 @@ def results(request):
 
 def answered(request):
     def on_bad_data(request):
-        messages.add_message(request, messages.ERROR, 'There was a problem with sent data, please answer again.')
+        messages.error(request, 'There was a problem with sent data, please answer again.')
         return HttpResponseRedirect(reverse('questionnaire:questionnaire'))
 
     # Some checks in case of malicious or erroneous POST request
